@@ -1,7 +1,3 @@
-# praha-challenge-task
-
-praha-challengeの課題用
-
 ## 課題1
 
 [課題1](./課題1.svg)
