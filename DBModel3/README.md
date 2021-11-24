@@ -1,6 +1,5 @@
 # 課題1
 [ダイアグラム](https://dbdiagram.io/d/6194fb0502cf5d186b5ae573)
-<iframe width="560" height="315" src='https://dbdiagram.io/embed/6194fb0502cf5d186b5ae573'></iframe>
 
 ## テーブル構成概要
 
