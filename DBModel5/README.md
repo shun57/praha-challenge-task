@@ -51,3 +51,20 @@
 2. 課題1とは別パターンで表現する
 
 [ダイアグラム](https://dbdiagram.io/d/619cfffe02cf5d186b648011)
+
+
+## レビュー受けて修正
+
+### articlesとarticle_historiesに同じ値を持たせない
+
+- 更新する時にtitleとcontentの両方を更新しなければいけない。データ量が多い時にパフォーマンスに影響が出そう。articlesに最新のarticle_histories.idを持たせれば解決。
+
+### 疑問点
+
+- 相互参照テーブルになってしまうのはどうなのか？
+
+#### 追加の時どうか？
+
+- articlesにデータを入れる場合、aritcle_historiesにはまだデータがないので、両方のテーブルにロックをかけてlatest_article_histories_idは+1を入れればいい？
+- なんか怪しそうなので、バージョンカラムを作ることにする。ariclesを最初に更新する。versionを+1。次にlatest_article_historiesにデータを追加する。versionはarticlesと同じものを入れる。
+
