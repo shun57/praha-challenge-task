@@ -18,11 +18,26 @@ ORDER BY
   OrderCount DESC
 ;
 
--- 最もよく注文してくれたのは以下3名で6回
+-- 最もよく注文してくれたのは以下のカスタマー
 -- CustomerID | CustomerName
--- 65 | Rattlesnake Canyon Grocery
--- 63 | QUICK-Stop
 -- 20 | Ernst Handel
+SELECT
+  CustomerID,
+  MAX(OrderCount) AS OrderCount
+FROM
+  (
+    SELECT
+      C.CustomerID,
+      COUNT(O.OrderId) AS OrderCount
+    FROM
+      Customers AS C
+      INNER JOIN
+        Orders AS O
+      ON  O.CustomerID = C.CustomerID
+    GROUP BY
+      C.CustomerID
+  )
+;
 
 ----------------------------------------------------------------
 -- SQL2
