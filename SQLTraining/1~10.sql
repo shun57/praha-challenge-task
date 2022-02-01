@@ -222,6 +222,7 @@ FROM
 ----------------------------------------------------------------
 
 SELECT
+  O.OrderID,
   E.EmployeeID,
   MAX(O.OrderDate) AS LatestOrderDate
 FROM
@@ -265,7 +266,7 @@ WHERE
 ;
 
 -- Q.なぜ「= NULL」だとダメなのか？
--- A.NULLは存在しない値(真偽値ではない0のため、等号の対象にならないから。
+-- A.NULLは存在しない値のため(真偽値ではない)、等号の対象にならないから。
 -- 参考：
 -- [3値論理](https://qiita.com/devopsCoordinator/items/9c10410b50f8fcc2ba79)
 
