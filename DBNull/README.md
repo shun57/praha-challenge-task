@@ -1,4 +1,4 @@
-# 課題
+# データベースにおけるNULLの扱い
 
 [課題内容](https://airtable.com/appPxhCPFYGqqN9YU/tblVlFr2q4lIqDKYc/viwX8r6DpCRp80swL/reckrvr9nBhbP9N5P?blocks=hide)
 

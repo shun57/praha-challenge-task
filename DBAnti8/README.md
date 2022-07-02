@@ -1,4 +1,4 @@
-# 課題
+# データベース設計のアンチパターンを学ぶ8
 
 [課題内容](https://airtable.com/appPxhCPFYGqqN9YU/tblVlFr2q4lIqDKYc/viwX8r6DpCRp80swL/recCiBp81yj2hVyot?blocks=hide)
 
