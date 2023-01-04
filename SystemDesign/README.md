@@ -120,14 +120,47 @@ https://tech-blog.rakus.co.jp/entry/20200701/programming
 
 ### 改善案
 
-- 購入限定商品かどうかを判定するロジックをProductクラス作る（Productにフラグ）
-- (過去一年以内:引数)に対象の商品を購入したかどうかのロジックを購入履歴クラスに作り、限定だった場合は呼び出し
 - purchaseでは購入のみを行い、purchaseを呼び出す前に、限定商品かを確認する
-- SQL側で絞り込む方法を採用
-  「対象product_id」と「限定フラグ」と「期間」で絞り込めば全件取得しなくてもいい
-  プレミアム会員の場合などは、別メソッドで絞る、過去3ヶ月以内などであれば引数の修正で済む
-  ただ１ユーザの購入履歴くらいであればそこまで量が多くなさそうなので、性能面では問題なさそうな気がする
+- 仕様はドメインの重要ルールであるため、サービスには記述しない。ドメインに記述してしまうとリポジトリの操作が必要になってしまうためそれも避ける。そのため仕様クラスを作る。
+- 一度全ての購入履歴を取得する必要はあるが、１ユーザの購入履歴が多くなりすぎる懸念がないと仮定し、問題ないとする（サービスによるが、、、）
 
+```
+interface Purchase {
+  userId: string
+  productId: string
+  transaction: {
+    succeeded: true
+    completedAt: Date
+  }
+}
+
+interface PaymentRecordRepo {
+  getPurchasesBy: (userId: string) => Purchase[]
+}
+
+class PurchaseService {
+  public constructor(private paymentRecordRepo: PaymentRecordRepo) {}
+
+  public purchase(userId: string, productId: string) {
+    const purchaseLimitSpecification = new PurchaseLimitSpecification(this.paymentRecordRepo)
+    if (purchaseLimitSpecification.isPurchasedBy(userId, productId)) {
+        throw new Error('この商品はおひとりさま一品限定です！')
+    }
+    // 購入手続きに進む
+  }
+}
+
+// 仕様クラス
+class PurchaseLimitSpecification {
+    public constructor(private paymentRecordRepo: PaymentRecordRepo) {}
+
+    public isPurchasedBy(userId: string, productId: string) {
+        const allPurchases = this.paymentRecordRepo.getPurchasesBy(userId)
+        const pastPurchase = allPurchases.find((p) => p.productId === productId && p.transaction.succeeded)
+        return pastPurchase
+    }
+}
+```
 
 ## 課題3
 
