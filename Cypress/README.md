@@ -6,8 +6,6 @@
 
 [ReactチュートリアルにCypressを導入](https://github.com/shun57/react-tutorial/pull/3)
 
-※TODO:Storyshotだけ未
-
 ## 課題2
 
 ### E2Eテスト
