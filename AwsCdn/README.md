@@ -38,10 +38,10 @@ https://www.fastly.com/jp/blog/leveraging-browser-cache-fastlys-cdn
 
 - 速度比較
 
-CloudFront経由 => 1.17s
+CloudFront経由 =>　23.70ms
 
 　![CloudFront経由](./CloudFront経由.png)
 
-CloudFront経由しない => 23.70ms
+CloudFront経由しない =>  1.17s
 
   ![CloudFront経由しない](./CloudFront経由しない.png)
