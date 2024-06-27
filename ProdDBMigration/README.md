@@ -107,7 +107,8 @@ main()
 
 2. 検証環境に入り、下記のコマンドを実施します
 ```
-prisma migrate deploy
+$ prisma migrate deploy
+$ prisma generate
 ```
 
 #### データ移行を実施
